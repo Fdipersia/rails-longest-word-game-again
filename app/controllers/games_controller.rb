@@ -1,3 +1,5 @@
+require 'open-uri'
+require 'net/https'
 class GamesController < ApplicationController
   
   def new
@@ -20,7 +22,7 @@ class GamesController < ApplicationController
   end
 
   def valid?(letters, word)
-    word.split('').each do |letter|
+    word.chars do |letter|
       if !letters.include? letter.upcase
         @score = "Sorry but #{word} can't be built out of #{letters}"
       else
